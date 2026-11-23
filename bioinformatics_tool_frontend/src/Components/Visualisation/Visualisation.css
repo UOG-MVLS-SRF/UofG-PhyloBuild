@@ -1,0 +1,123 @@
+#body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h2{
+    color: #00B5D1;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h5{
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.Button_vis{
+    width: 175px;
+    height: 55px;
+    border-color: #5B4D94;
+    background-color: #5B4D94;
+    border-width: 2px;
+    border-style: solid;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    font-family: 'Swis721 BT', sans-serif;
+    font-size: 15pt;
+    color: #ffffff;
+}
+
+.Button_vis:hover{
+    background-color: #95126F;
+    border-color: #95126F;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.row>* {
+    flex: 1 1 160px;
+}
+  
+.block {
+    display: inline-block;
+}
+
+#wrapper {
+    width: 60%;
+    align-items: right;
+    margin-left: 30px;
+}
+
+#list{
+    border-color: #5B4D94;
+    border-width: 2px;
+    border-style: solid;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 5px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+#box-wrapper{
+    width: 100%;
+    align-items: center;
+}
+  
+#upload{
+    align-items: center;
+    margin-left: 28px;
+}
+
+#box_wrapper_vis {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-color: #5B4D94;
+    border-width: 2px;
+    border-style: solid;
+    padding-top: 10px;
+    border-radius: 10px;
+}
+
+table {
+    border: 1px solid;
+    border-color: #5B4D94;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+th, td {
+    border: 1px solid;
+    border-color: #5B4D94;
+}
+
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+input[type=text]
+{
+  /* Double-sized Checkboxes */
+  height: 50px;
+  margin-left: 0px;
+  margin-right: 10px;
+  border: 2px solid;
+  border-color: #5B4D94;
+}
+
+.Input_vis{
+    width: 10px;
+}

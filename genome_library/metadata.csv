@@ -1,0 +1,3 @@
+file_name,name,accession
+test-ecoli.fasta,TEST,PT00000001
+TestSubfolder/test-ecoli-2.fasta,TEST2,PT00000002

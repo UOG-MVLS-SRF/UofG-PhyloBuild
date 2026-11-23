@@ -1,0 +1,341 @@
+.tree-viewer .branch {
+	fill: none;
+	stroke: #000000;
+	stroke-width: 1.5px;
+}
+
+.tree-viewer .branch-tracer {
+	fill: none;
+	stroke: #999999;
+	stroke-width: 1px;
+	stroke-dasharray: 3, 3;
+}
+
+.tree-viewer .internal-node circle {
+	fill: #000000;
+	stroke: none;
+}
+
+.tree-viewer .node circle {
+	fill: #000000;
+	stroke: none;
+}
+
+.tree-viewer .phylotree-node-text {
+	fill: #000000;
+	font-family: 'Swis721 BT', sans-serif;
+}
+
+.tree-viewer .tree-scale-bar path,
+.tree-viewer .tree-scale-bar line {
+	fill: none;
+	stroke: #000000;
+}
+.tree-viewer-wrapper {
+	display: flex;
+	align-items: flex-start;
+	width: 100%;
+	gap: 20px;
+}
+
+.tree-viewer {
+	width: 100%;
+	min-width: 0;
+	box-sizing: border-box;
+}
+
+.tree-viewer svg {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: none;
+	flex-shrink: 0;
+    border: 1px solid #ccc;
+}
+
+.tree-options-panel {
+	width: 220px;
+	flex-shrink: 0;
+	box-sizing: border-box;
+	padding: 16px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	font-family: 'Swis721 BT', sans-serif;
+    flex: 0 0 220px;
+    margin-left: auto;
+}
+
+.tree-option {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	margin-bottom: 14px;
+}
+
+.tree-option:last-child {
+	margin-bottom: 0;
+}
+
+.tree-option label {
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+.tree-option select {
+	width: 110px;
+	height: 32px;
+	font-family: 'Swis721 BT', sans-serif;
+}
+
+.tree-option input[type="number"] {
+	width: 70px;
+	height: 32px;
+	box-sizing: border-box;
+	font-family: 'Swis721 BT', sans-serif;
+}
+
+.tree-option input[type="checkbox"] {
+	width: 10px;
+	height: 10px;
+	margin: 0;
+}
+
+.tree-download-option {
+	margin-top: 20px;
+	justify-content: center;
+}
+
+.tree-download-button {
+	width: 100%;
+	padding: 10px;
+	border: 2px solid #5B4D94;
+	border-radius: 4px;
+	background-color: #5B4D94;
+	color: #ffffff;
+	font-family: 'Swis721 BT', sans-serif;
+	font-size: 12pt;
+	cursor: pointer;
+}
+
+.tree-download-button:hover {
+	opacity: 0.9;
+}
+
+.tree-colour-accordion, .tree-highlight-accordion,.tree-clade-accordion, .tree-rename-accordion{
+	margin-top: 18px;
+	padding-top: 12px;
+	border-top: 1px solid #ccc;
+}
+
+.tree-colour-toggle {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding: 8px 0;
+	border: none;
+	background: none;
+	font-family: 'Swis721 BT', sans-serif;
+	font-size: 12pt;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.tree-colour-options {
+	margin-top: 12px;
+}
+
+.tree-colour-options .tree-option {
+	margin-bottom: 12px;
+}
+
+.tree-option input[type="color"] {
+	width: 42px;
+	height: 32px;
+	padding: 2px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.tree-highlight-accordion {
+	margin-top: 12px;
+	padding-top: 12px;
+	border-top: 1px solid #ccc;
+}
+
+.tree-highlight-options {
+	margin-top: 12px;
+}
+
+.tree-option-stacked {
+	flex-direction: column;
+	align-items: stretch;
+}
+
+.tree-option-stacked select {
+	width: 100%;
+}
+
+.tree-highlight-button {
+	width: 100%;
+	padding: 8px;
+	margin-top: 6px;
+	border: 2px solid #5B4D94;
+	border-radius: 4px;
+	background-color: #5B4D94;
+	color: #ffffff;
+	font-family: 'Swis721 BT', sans-serif;
+	cursor: pointer;
+}
+
+.tree-highlight-button:disabled {
+	opacity: 0.5;
+	cursor: default;
+}
+
+.tree-highlight-list {
+	margin-top: 12px;
+}
+
+.tree-highlight-item {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 8px;
+	font-family: 'Swis721 BT', sans-serif;
+	font-size: 10pt;
+}
+
+.tree-highlight-swatch {
+	width: 14px;
+	height: 14px;
+	flex-shrink: 0;
+	border: 1px solid #999;
+	border-radius: 2px;
+}
+
+.tree-highlight-name {
+	flex: 1;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.tree-highlight-remove {
+	border: none;
+	background: none;
+	font-size: 16pt;
+	line-height: 1;
+	cursor: pointer;
+}
+
+.tree-view-buttons {
+	display: flex;
+	gap: 8px;
+	margin-bottom: 16px;
+}
+
+.tree-view-button {
+	flex: 1;
+	padding: 8px 6px;
+	border: 1px solid #5B4D94;
+	border-radius: 4px;
+	background-color: #ffffff;
+	color: #5B4D94;
+	font-family: 'Swis721 BT', sans-serif;
+	font-size: 10pt;
+	cursor: pointer;
+}
+
+.tree-view-button:hover {
+	background-color: #f3f1f9;
+}
+
+[data-tooltip] {
+	position: relative;
+}
+
+[data-tooltip]::after {
+	content: attr(data-tooltip);
+	position: absolute;
+	left: 50%;
+	bottom: calc(100% + 8px);
+	transform: translateX(-50%);
+	width: 220px;
+	padding: 8px 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: #ffffff;
+	color: #333333;
+	font-family: 'Swis721 BT', sans-serif;
+	font-size: 9pt;
+	font-weight: normal;
+	line-height: 1.3;
+	text-align: left;
+	white-space: normal;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	z-index: 100;
+}
+
+[data-tooltip]:hover::after {
+	opacity: 1;
+	visibility: visible;
+}
+
+.tree-option[data-tooltip]::after {
+	left: auto;
+	right: 0;
+	transform: none;
+}
+
+.tree-restore-button {
+	background-color: #ffffff;
+	color: #5B4D94;
+}
+
+.tree-tooltip-target {
+	position: relative;
+	width: 100%;
+}
+
+.tree-display-row {
+	display: flex;
+	align-items: flex-start;
+	width: 100%;
+}
+
+.tree-viewer {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.tree-zoom-control {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	flex: 0 0 34px;
+	margin-left: 8px;
+	padding-top: 6px;
+	user-select: none;
+}
+
+.tree-zoom-slider {
+	writing-mode: vertical-lr;
+	direction: rtl;
+	width: 24px;
+	height: 180px;
+	margin: 8px 0;
+	cursor: pointer;
+}
+
+.tree-zoom-label {
+	font-family: 'Swis721 BT', sans-serif;
+	font-size: 12pt;
+	font-weight: 600;
+	line-height: 1;
+}

@@ -1,0 +1,4 @@
+MAILTO=""
+SHELL=/bin/bash
+* * * * * root  /app/python_cron.sh >> /app/cron.log 2>&1
+

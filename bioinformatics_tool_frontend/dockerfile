@@ -1,0 +1,22 @@
+FROM node:20 AS base
+WORKDIR /app
+
+RUN apt-get update && \
+    apt-get install -y bash && \
+    apt-get clean
+
+COPY ./bioinformatics_tool_frontend/package.json package.json
+RUN npm update -g npm
+RUN npm install yarn --save --legacy-peer-deps
+RUN yarn config set network-timeout 600000 -g && yarn install --save --legacy-peer-deps
+RUN yarn add react-client-session
+RUN yarn add phylotree
+COPY  ./bioinformatics_tool_frontend  .
+
+FROM base AS seperate_line_for_dev_above
+ARG REACT_APP_API_ENDPOINT
+RUN yarn run build
+
+FROM nginx:stable-alpine AS prod
+COPY --from=seperate_line_for_dev_above /app/build /usr/share/nginx/html
+# COPY --from=seperate_line_for_dev_above /app/default.conf /etc/nginx/conf.d/default.conf

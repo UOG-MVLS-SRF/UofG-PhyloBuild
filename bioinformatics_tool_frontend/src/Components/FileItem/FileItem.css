@@ -1,0 +1,30 @@
+.list_item{
+    margin-right: 20px;
+    margin-bottom: 2px;
+    border-color: #4F5961;
+    border-width: 2px;
+    border-style: solid;
+    background-color: #4F5961;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.row>* {
+    flex: 1 1 160px;
+}
+
+.block_name {
+    display: inline-block;
+    align-items:start;
+    margin-left: 20px;
+}
+
+.block_icon {
+    display: inline-block;
+    align-items:end;
+    margin-left: 50px;
+}

@@ -1,0 +1,53 @@
+#Secret string for the Django server
+DJANGO_SECRET=<CANNOT DISPLAY>
+
+#Allowed hosts for the Django server
+DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1,0.0.0.0,phylotree.srf.gla.ac.uk
+
+#Whether to run Django in DEBIG mode - don't do this for a Production server!
+DEBUG=False
+
+#Allowed hosts for serving static files
+CORS_ORIGIN_WHITELIST=http://localhost:3000 http://127.0.0.1:3000 http://0.0.0.0:3000 http://server_ip:3000
+
+#The desired name of the PostgresDB database
+POSTGRES_DB=phylotree
+
+#The Desired username for PostgresDB
+POSTGRES_USER=phylotree_user
+
+#The Desired username for PostgresDB
+POSTGRES_PASSWORD=<CANNOT DISPLAY>
+
+#Email address to use for PostgresDB admin account
+PGADMIN_DEFAULT_EMAIL=phylotree_user@admin.com
+
+#The Desired password for PostgresDB
+PGADMIN_DEFAULT_PASSWORD=<CANNOT DISPLAY>
+
+#API endpoint for internal commands
+#This should be <your server>/api
+REACT_APP_API_ENDPOINT=phylotree.srf.gla.ac.uk/api
+
+#Settings for sending emails on job start/completion
+#This must use an email account with TLS/SMTP enabled
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = <'your-smtp-server.com'>  # e.g. smtp.gmail.com for Gmail
+EMAIL_PORT = 587  # For use with TLS
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = <'your_email@example.com'>
+EMAIL_HOST_PASSWORD = <CANNOT DISPLAY>
+
+#Login details for Docker.
+#This account MUST EXIST AT DOCKERHUB (https://hub.docker.com/)
+DOCKERNAME=<YOUR DOCKER USERNAME>
+DOCKERPASS=<CANNOT DISPLAY>
+
+#Desired Docker container names
+MAINNAME=phylotree_main
+FRONTENDNAME=phylotree_frontend
+CUSTOMERLIBNAME=phylotree_customerlib
+VERSION=V?.?
+
+#NGINX config files
+NGINX_CONF=bioinformatics_tool_frontend/nginx_configs/default.conf

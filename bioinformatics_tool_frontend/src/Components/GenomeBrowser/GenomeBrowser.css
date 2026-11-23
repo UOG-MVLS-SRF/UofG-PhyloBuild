@@ -1,0 +1,116 @@
+.genome_browser {
+	width: 700px;
+	max-width: 90vw;
+	height: 500px;
+	max-height: 85vh;
+	background: white;
+	border-radius: 6px;
+	display: flex;
+	flex-direction: column;
+    border:5px solid #003865;
+    box-shadow:10px 5px 5px gray;
+}
+
+.genome_browser_header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 12px 16px;
+	border-bottom: 1px solid #ddd;
+}
+
+.genome_browser_header h3 {
+	margin: 0;
+}
+
+.genome_browser_close {
+	border: none;
+	background: transparent;
+	font-size: 1.5rem;
+	cursor: pointer;
+}
+
+.genome_browser_breadcrumbs {
+	padding: 10px 16px;
+	border-bottom: 1px solid #ddd;
+	font-size: 0.9rem;
+}
+
+.genome_browser_breadcrumb {
+	border: none;
+	background: transparent;
+	padding: 0;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.genome_browser_directory {
+	flex: 1;
+	overflow-y: auto;
+	padding: 12px 16px;
+}
+
+.genome_browser_folder {
+	display: block;
+	width: 100%;
+	border: none;
+	background: transparent;
+	text-align: left;
+	padding: 8px;
+	cursor: pointer;
+	font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.genome_browser_folder:hover {
+	background: #f5f5f5;
+}
+
+.genome_browser_genome {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 8px;
+	cursor: pointer;
+	border-bottom: 1px solid #eee;
+}
+
+.genome_browser_genome:hover {
+	background: #f5f5f5;
+}
+
+.genome_browser_genome_details {
+	display: flex;
+	flex-direction: column;
+}
+
+.genome_browser_genome_name {
+	font-weight: 500;
+}
+
+.genome_browser_accession {
+	font-size: 0.8rem;
+	color: #666;
+}
+
+.genome_browser_footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 12px 16px;
+	border-top: 1px solid #ddd;
+}
+
+.genome_browser_footer div {
+	display: flex;
+	gap: 8px;
+}
+
+.genome_browser_message,
+.genome_browser_error {
+	padding: 20px;
+}
+
+.genome_browser_error {
+	color: #a00;
+}

@@ -1,0 +1,30 @@
+.container_about{
+    margin: auto;
+    width: 95%;
+}
+
+.about_heading {
+    margin: auto;
+    width: 70%;
+    border-radius: 2px;
+    font-family: 'Swis721 BT', sans-serif;
+    color: #003865;
+    font-size: 22pt;
+    padding: 8px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+
+.about_text{
+    margin: auto;
+    width: 70%;
+    color: #003865;
+    border-color: #4F5961;
+    border-top: 1px solid #4F5961;
+    border-bottom: 1px solid #4F5961;
+    font-family: 'Swis721 BT', sans-serif;
+    font-size: 12pt;
+    align-items: center;
+    padding: 5px;
+}

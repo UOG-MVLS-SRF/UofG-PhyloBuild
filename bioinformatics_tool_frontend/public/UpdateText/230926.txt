@@ -1,0 +1,4 @@
+23 September 2026 - V0.11 (Heatmaps)
+Carriage gene functionality restored
+Heatmaps options added to PhyloTree
+Results viewer facility added

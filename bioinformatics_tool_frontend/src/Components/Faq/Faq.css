@@ -1,0 +1,32 @@
+.container_faq{
+    margin: auto;
+    width: 70%;
+}
+
+.faq_headings {
+    margin: auto;
+    width: 70%;
+    background-color: #003865;
+    border-radius: 2px;
+    font-family: 'Swis721 BT', sans-serif;
+    color: #ffffff;
+    font-size: 20pt;
+    padding: 8px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+
+.faq_text{
+    margin: auto;
+    width: 70%;
+    color: #003865;
+    border-color: #003865;
+    border-radius: 2px;
+    border-width: 5px;
+    border-style: solid;
+    font-family: 'Swis721 BT', sans-serif;
+    font-size: 14pt;
+    align-items: center;
+    padding: 5px;
+}

@@ -1,0 +1,18 @@
+/* FileTransferIntro.css */
+#description-section {
+    float: left;
+    border: 2px solid orange;
+    padding: 10px; /* Add padding inside the border */
+}
+
+.description-text {
+    color: black;
+    font-size: 18px;
+    margin-bottom: 10px; /* Add space below the paragraph */
+}
+
+#dev_tool_png {
+    display: block; /* Ensure the image is a block-level element */
+    max-width: 100%; /* Ensure the image is responsive and fits within the container */
+    height: auto; /* Maintain aspect ratio */
+}

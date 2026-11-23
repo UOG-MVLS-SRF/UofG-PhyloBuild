@@ -1,0 +1,366 @@
+h2{
+    color: #385a4f;
+    font-family: 'Swis721 BT', sans-serif;
+}
+
+h5{
+    color: #ffffff;
+    font-family: 'Swis721 BT', sans-serif;
+}
+
+.error{
+    color: #ff3333;
+    font-family: 'Swis721 BT', sans-serif;
+}
+
+.Button_Tree{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-color: #385a4f;
+    background-color: #385a4f;
+    font-family: 'Swis721 BT', sans-serif;
+    font-size: 15pt;
+    color: #ffffff;
+    border-width: 2px;
+    border-style: solid;
+    text-align: center;
+}
+
+.Button_extra{
+    width: 150px;
+    height: 35px;
+    border-color: #4F5961;
+    background-color: #4F5961;
+    border-width: 2px;
+    border-style: solid;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #ffffff;
+    font-family: 'Swis721 BT', sans-serif;
+    font-size: 15pt;
+}
+
+.Button_extra:hover{
+    background-color: #95126F;
+    border-color: #95126F;
+}
+
+.Button_orth{
+    width: 274px;
+    height: 35px;
+    border-color: #385a4f;
+    background-color: #385a4f;
+    border-width: 2px;
+    border-style: solid;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #ffffff;
+    font-family: 'Swis721 BT', sans-serif;
+    font-size: 15pt;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.rowBox {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    border-color: #385a4f;
+    border-style: solid;
+    border-width: 2px;
+    margin-left: 1%;
+    margin-right: 1%;
+    border-radius: 10px;
+}
+
+.step_heading_tree {
+    border-color: #385a4f;
+    background-color: #385a4f;
+    border-width: 2px;
+    border-style: solid;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-family: 'Swis721 BT', sans-serif;
+    font-size: 20pt;
+    margin-left: 1%;
+    margin-right: 1%;
+    border-radius: 10px;
+}
+
+.row>* {
+    flex: 1 1 160px;
+}
+  
+.block {
+    display: inline-block;
+    align-items: center;
+}
+
+.blockBox {
+    display: inline-block;
+    align-items: center;
+    border-color: #385a4f;
+    border-style: solid;
+    border-width: 2px;
+    margin-left: 1%;
+    margin-right: 1%;
+    border-radius: 10px;
+}
+
+#wrapper {
+    width: 250px;
+    align-items: center;
+    margin-left: 100px;
+}
+
+#list_box {
+    border-color: #385a4f;
+    border-width: 2px;
+    border-style: solid;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 5px;
+}
+
+#list_tree{
+    border-color: #385a4f;
+    background-color: #385a4f;
+    border-width: 2px;
+    border-style: solid;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 5px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+  transform: scale(1.5);
+  margin-left: 0px;
+  margin-right: 10px;
+}
+
+#box_wrapper_tree {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-color: #385a4f;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+    padding-top: 10px;
+}
+
+.button {
+    width: 274px;
+    height: 55px;
+    border-color: #385a4f;
+    background-color: #385a4f;
+    border-width: 2px;
+    border-style: solid;
+    margin-left: 20px;
+    margin-bottom: 5px;
+    color: #ffffff;
+    font-family: 'Swis721 BT', sans-serif;
+    font-size: 15pt;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.button:hover{
+    background-color: #95126F;
+    border-color: #95126F;
+}
+
+#form-file-upload {
+    height: 250px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+  }
+  
+  #input-file-upload {
+    display: none;
+  }
+  
+  #label-file-upload {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8fafc;
+  }
+  
+  .upload-button {
+    height: 40px;
+    width: 90%;
+    margin-top: 5%;
+    margin-left: 5%;
+    border-color: #385a4f;
+    border-radius: 2px;
+    border-width: 2px;
+    border-style: solid;
+    color: #ffffff;
+    background-color: #385a4f;
+    font-family: 'Swis721 BT', sans-serif;
+    font-size: medium;
+  }
+  
+  .upload-button:hover {
+    text-decoration-line: underline;
+  }
+
+.lists{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-color: #4F5961;
+    border-width: 2px;
+    border-style: solid;
+    font-size: 10pt;
+}
+
+.strain_button{
+    width: 274px;
+    height: 25px;
+    border-color: #4F5961;
+    border-width: 2px;
+    border-style: solid;
+    font-size: 15pt;
+    font-family: 'Swis721 BT', sans-serif;
+    color: #4F5961;
+    text-align: center;
+    margin-top: 10px;
+    margin-right: 50px;
+}
+
+#select_list{
+    width: fit-content;
+    height: 250px;
+    border-color: #4F5961;
+    background-color: #f8fafc;
+    border-width: 2px;
+    border-style: solid;
+    font-size: 15pt;
+    font-family: 'Swis721 BT', sans-serif;
+    color: #4F5961;
+    text-align: left;
+    overflow: scroll;
+}
+
+#select_label{
+    color: #4F5961;
+    font-size: 15pt;
+    font-family: 'Swis721 BT', sans-serif;
+}
+
+.files_list{
+    text-align: center;
+    height: fit-content;
+    max-height: 150px;
+    overflow: scroll;
+    padding: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.files_list_orth{
+    text-align: center;
+    height: fit-content;
+    max-height: 50px;
+    overflow: scroll;
+    padding: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.treepopup-content {
+    color: #385a4f;
+    font-family: 'Swis721 BT', sans-serif;
+    font-size: medium;
+    text-align: center;
+    padding: 5px;
+}
+
+.treepopup-arrow {
+    color: rgb(255, 255, 255);
+}
+
+[role='tooltip'].treepopup-content {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;
+}
+
+.treepopup-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: 50%;
+    margin-top: 25%;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    background: #F7F7F7;
+    border-radius: 2px;
+    border-color: #385a4f;
+    border-style: solid;
+    border-width: 8px;
+}
+
+[data-popup='tooltip'].treepopup-overlay {
+    background: #F7F7F7;
+}
+
+.genome_database_labels{
+    width: 80%;
+    margin-top: 5%;
+    border-color: #385a4f;
+    border-radius: 2px;
+    border-width: 2px;
+    border-style: solid;
+    color: #ffffff;
+    background-color: #385a4f;
+    font-family: 'Swis721 BT', sans-serif;
+    font-size: medium;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    height: 36px;
+    justify-content: flex;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  transform: scale(2);
+}

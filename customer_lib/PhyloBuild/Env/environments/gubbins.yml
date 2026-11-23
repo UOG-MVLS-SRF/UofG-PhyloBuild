@@ -1,0 +1,9 @@
+name: gubbins
+channels:
+  - r
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - gubbins
+prefix: /home/andrew/miniforge3/envs/gubbins

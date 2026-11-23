@@ -1,0 +1,96 @@
+version: '3.4'
+services:
+
+  db:
+    image: postgres:12.13
+    restart: unless-stopped
+    env_file:
+      - .env.dev
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pg/postgres-data:/var/lib/postgresql/data
+
+  web:
+    tty: true
+    env_file:
+      - .env.dev
+    build:
+      dockerfile: ./bioinformatics_tool/dockerfile
+
+    depends_on:
+      - db
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./bioinformatics_tool:/app
+
+
+    #seeing api using 127.0.0.1 in browser
+    command: bash -c "python manage.py makemigrations && \
+                      python manage.py migrate && \
+                      python manage.py collectstatic --noinput && \
+                      env > /container.env && \
+                      sed -i -e 's/=/=\"/;s/$/\"/' /container.env && \
+                      service cron start && \
+                      python manage.py runserver 0.0.0.0:8000"
+
+    ports:
+      - "8000:8000"
+
+  frontend:
+    stdin_open:  true
+    build:
+      dockerfile: ./bioinformatics_tool_frontend/dockerfile        
+      target: base
+
+    volumes:
+      - ./bioinformatics_tool_frontend/package.json:/app/package.json
+      - ./bioinformatics_tool_frontend/yarn.lock:/app/yarn.lock
+      - ./bioinformatics_tool_frontend/src:/app/src
+      - ./bioinformatics_tool_frontend/public:/app/public
+
+    env_file:
+      - .env.dev
+
+    command: yarn run start
+
+    ports:
+      - "3000:3000"
+
+    links:
+      - web
+
+  pgadmin:
+    links:
+      - db:db
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+      - "5050:80"
+    env_file:
+      - .env.dev
+    volumes:
+      - ./pg/pgadmin-data:/var/lib/pgadmin/data
+
+  custom_lib:
+    build:
+      dockerfile: customer_lib/dockerfile
+      args:
+        - USERNAME=${DOCKERNAME}
+        - PROJECTNAME=${PROJECTNAME}
+        - VERSION=${VERSION}
+
+    command: tail -f /dev/null
+    ports:
+      - "4500:4500"
+    deploy:
+      resources:
+        limits:
+          memory: 500M
+

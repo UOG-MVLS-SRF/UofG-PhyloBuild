@@ -1,0 +1,3 @@
+11 November 2026 - V0.4 (Results Update)
+Interactive results display added
+Database Genomes moved inside dropdowns

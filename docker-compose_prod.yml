@@ -1,0 +1,93 @@
+version: '3.4'
+services:
+  db:
+    image: postgres:18.6
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pg:/var/lib/postgresql
+
+  web:
+    build:
+      dockerfile: ./bioinformatics_tool/dockerfile
+    volumes:
+      - django_static:/app/staticfiles
+      - media_data:/app/media
+      - /var/run/docker.sock:/var/run/docker.sock
+
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - CORS_ORIGIN_WHITELIST=${CORS_ORIGIN_WHITELIST}
+      # (media volume mounted below so job inputs/outputs survive rebuilds & restarts)
+      - DEBUG=${DEBUG}
+      - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
+      - DJANGO_SECRET=${DJANGO_SECRET}
+      - EMAIL_BACKEND=${EMAIL_BACKEND}
+      - EMAIL_HOST=${EMAIL_HOST}
+      - EMAIL_PORT=${EMAIL_PORT}
+      - EMAIL_USE_TLS=${EMAIL_USE_TLS}
+      - EMAIL_HOST_USER=${EMAIL_HOST_USER}
+      - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
+
+    depends_on:
+      - db
+    #seeing api using 127.0.0.1 in browser
+    command: bash -c "python manage.py makemigrations && \
+                      python manage.py migrate && \
+                      python manage.py collectstatic --noinput && \
+                      env > /container.env && \
+                      sed -i -e 's/=/=\"/;s/$/\"/' /container.env && \
+                      service cron start && \
+                      gunicorn bioinformatics_tool.wsgi:application --bind 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+
+
+  frontend:
+    stdin_open:  true
+    build:
+      dockerfile: ./bioinformatics_tool_frontend/dockerfile
+      target: prod
+      args:
+            - REACT_APP_API_ENDPOINT=${REACT_APP_API_ENDPOINT}
+
+    volumes:
+      - django_static:/django_static
+    ports:
+      - "80:80"
+
+
+
+  custom_lib:
+    build:
+      dockerfile: customer_lib/dockerfile
+      args:
+        - USERNAME=${DOCKERNAME}
+        - PROJECTNAME=${PROJECTNAME}
+        - VERSION=${VERSION}
+
+    command: tail -f /dev/null
+    ports:
+      - "4500:4500"
+    deploy:
+      resources:
+        limits:
+          memory: 500M
+
+
+
+volumes:
+  django_static:
+  media_data:
+

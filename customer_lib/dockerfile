@@ -1,0 +1,120 @@
+# Install system dependencies (excluding r-base and r-base-dev)
+#RUN git clone -b branch something
+# Use the official Python image as the base image
+ARG DOCKERNAME
+ARG VERSION
+
+#BiocManager::install("YuLab-SMU/treedataverse")
+#install.packages("svglite")
+FROM $DOCKERNAME/buildstage:$VERSION
+# Set timezone to UTC (otherwise need interaction input, so don't remove!)
+ENV TZ=UTC
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+WORKDIR /app
+
+# Install system dependencies (excluding r-base and r-base-dev)
+#RUN git clone -b branch something
+#RUN git clone https://github.com/samandmac/PhyloTree.git /app/tempDir && \
+#    find /app/tempDir -mindepth 1 -maxdepth 1 -exec mv -t /app/ {} + && \
+#    rm -rf /app/tempDir
+#RUN git checkout Updates
+COPY ./customer_lib/PhyloBuild/ /app/
+RUN rm -rf /app/Tree_Genes/ && mkdir /app/Tree_Genes/
+RUN rm -rf /app/Carriage_Genes/ && mkdir /app/Carriage_Genes/
+RUN rm -rf /app/Tree_Genomes/ && mkdir /app/Tree_Genomes/
+
+# Also start with an EMPTY Genomes_Interest, otherwise leftover/test genomes baked into
+# the image get flagged "of interest" and pollute the standalone heatmap (it should show
+# only the genomes the user uploads into the Genomes-of-Interest field).
+RUN rm -rf /app/Genomes_Interest/ && mkdir /app/Genomes_Interest/
+# PhyloGenes reads the reference gene set from /app/PhyloGenes/. Start it empty so the
+# upload has somewhere to go and no old files are left over.
+RUN rm -rf /app/PhyloGenes/ && mkdir /app/PhyloGenes/
+
+#Organize initial data pools
+RUN apt-get update && apt-get install dos2unix &&\
+    find /app -type f -exec dos2unix {} \;
+
+# --- NCBI AMRFinderPlus (for the optional AMR screening stage) ---
+# Needs HMMER and a newer libstdc++ than Ubuntu 22.04 ships (v4.2.7 wants GLIBCXX_3.4.32+),
+# which comes from the ubuntu-toolchain-r PPA. BLAST+ is already in the base image.
+RUN apt-get update && apt-get install -y --no-install-recommends hmmer software-properties-common wget && \
+    add-apt-repository -y ppa:ubuntu-toolchain-r/test && \
+    apt-get update && apt-get install -y --only-upgrade libstdc++6 && \
+    rm -rf /var/lib/apt/lists/*
+# Download the AMRFinderPlus binary and its database, baked in so runs are offline and fast.
+RUN mkdir -p /opt/amrfinder && cd /opt/amrfinder && \
+    wget -q https://github.com/ncbi/amr/releases/download/amrfinder_v4.2.7/amrfinder_binaries_v4.2.7.tar.gz -O amr.tar.gz && \
+    tar -xzf amr.tar.gz && rm amr.tar.gz && \
+    PATH=/opt/amrfinder:/usr/local/bin:$PATH /opt/amrfinder/amrfinder -u
+ENV PATH=/opt/amrfinder:$PATH
+
+#Organize initial data pools
+#RUN rm -r /app/Tree_Genomes/*
+
+# ----------------------------
+# Miniconda
+# ----------------------------
+ENV CONDA_DIR=/opt/conda
+ENV PATH=${CONDA_DIR}/bin:${PATH}
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        wget \
+        ca-certificates \
+        bzip2 \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN wget -q \
+      https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
+      -O /tmp/miniconda.sh \
+    && bash /tmp/miniconda.sh -b -p ${CONDA_DIR} \
+    && rm /tmp/miniconda.sh \
+    && conda clean -afy
+
+# Accept Anaconda channel Terms of Service non-interactively
+RUN conda tos accept \
+      --override-channels \
+      --channel https://repo.anaconda.com/pkgs/main \
+    && conda tos accept \
+      --override-channels \
+      --channel https://repo.anaconda.com/pkgs/r
+
+#Create environments
+RUN conda env create --solver libmamba -f /app/Env/environments/ohrbid.yml
+
+RUN conda env create --solver libmamba -f /app/Env/environments/gubbins.yml
+
+# Create PlaScope, COPLA and MacSyFinder environments/tools
+RUN chmod +x /app/Env/create_analytical_envs.sh \
+    && /app/Env/create_analytical_envs.sh 
+
+RUN python3 -m pip install biopython
+
+# any2fasta is a small script mlst needs to convert input formats
+RUN git clone https://github.com/tseemann/any2fasta.git /opt/any2fasta
+ENV PATH=/opt/any2fasta:$PATH
+
+# Pre-compute the S. aureus ST → clonal complex lookup table from allele profiles.
+RUN mkdir /app/mlst_lookups
+RUN python3 /app/py/build_cc_table.py /opt/conda/envs/ohrbid/db/pubmlst/saureus/saureus.txt /app/mlst_lookups/saureus_cc.tsv
+
+# ----------------------------
+# raxml-ng installation
+# ----------------------------
+RUN git clone --recursive https://codeberg.org/amkozlov/raxml-ng && \
+    cd raxml-ng && \
+    mkdir build && \
+    cd build && \
+    cmake .. && \
+    make
+
+RUN cp ./raxml-ng/bin/raxml-ng /usr/local/bin/raxml-ng
+
+#Docker needed for mob-suite
+RUN apt-get update && \
+	apt-get install -y docker.io && \
+	rm -rf /var/lib/apt/lists/*
+
+EXPOSE 4500

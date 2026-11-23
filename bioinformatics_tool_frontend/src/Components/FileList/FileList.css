@@ -1,0 +1,29 @@
+.files_list_large{
+    text-align: center;
+    height: 150px;
+    overflow: scroll;
+    padding: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.files_list_medium{
+    text-align: center;
+    height: 50px;
+    padding: 0;
+    overflow: scroll;
+    margin-left: 10px;
+    margin-right: 10px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.files_list_small{
+    text-align: center;
+    height: 40px;
+    overflow: scroll;
+    padding: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+    -webkit-overflow-scrolling: touch;
+}

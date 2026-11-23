@@ -1,0 +1,188 @@
+.results-box{
+    width: 100%;
+    margin: auto;
+    align-items: center;
+}
+
+#container_results{
+    margin: auto;
+    width: 40%;
+}
+
+.button-results{
+    width: fit-content;
+    height: fit-content;
+    border-color: #5B4D94;
+    background-color: #5B4D94;
+    border-width: 2px;
+    border-style: solid;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding: 10px;
+    border-radius: 2px;
+    font-family: 'Swis721 BT', sans-serif;
+    font-size: 15pt;
+    color: #ffffff;
+}
+
+.label-results{
+	width: fit-content;
+	height: 30px;
+	border-color: #5B4D94;
+	background-color: #5B4D94;
+	border-width: 2px;
+	border-style: solid;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	padding: 10px;
+	border-radius: 2px;
+	font-family: 'Swis721 BT', sans-serif;
+	font-size: 15pt;
+	color: #ffffff;
+	display: flex;
+	align-items: center;
+	white-space: nowrap;
+}
+
+#container_results .row {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	gap: 10px;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+#container_results .row > * {
+	flex: none;
+}
+
+#container_results .row input {
+	flex: 1;
+	min-width: 0;
+	height: 30px;
+	box-sizing: border-box;
+	font-family: 'Swis721 BT', sans-serif;
+	font-size: 12pt;
+}
+
+
+.results_image {
+    width: 100%;
+}
+
+.block{
+    display: inline-block;
+    align-items:end;
+    font-family: 'Swis721 BT', sans-serif;
+    color: #ffffff;
+    font-size: 20pt;
+    margin-right: 20px;
+}
+
+/* --- Inline results display (tree/heatmap images + AMR/virulence tables) --- */
+/* Break out of the narrow input column so results have room to breathe. */
+.results-content {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90vw;
+    max-width: 1100px;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+}
+
+.results-caption {
+    font-family: 'Swis721 BT', sans-serif;
+    font-size: 16pt;
+    margin: 0 0 8px 0;
+    text-align: center;
+}
+
+.results-figure {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+}
+
+.results-image {
+    width: 50%;
+    height: auto;
+    border: 1px solid #ccc;
+}
+
+.results-table-wrap {
+    width: 100%;
+}
+
+.results-table-scroll {
+    max-height: 480px;
+    overflow: auto;
+    border: 1px solid #ccc;
+}
+
+.results-table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: 'Swis721 BT', sans-serif;
+    font-size: 11pt;
+}
+
+.results-table th,
+.results-table td {
+    border: 1px solid #ddd;
+    padding: 4px 8px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.results-table thead th {
+    position: sticky;
+    top: 0;
+    background-color: #5B4D94;
+    color: #ffffff;
+}
+
+.results-message {
+    font-family: 'Swis721 BT', sans-serif;
+}
+
+.result_input {
+    margin-top:0 !important;
+}
+
+#container_results .row:has(.button-results) {
+	justify-content: center;
+}
+
+.results-tabs {
+	display: flex;
+	flex-wrap: wrap;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 20px;
+}
+
+.results-tab {
+	padding: 10px 18px;
+	border: none;
+	border-bottom: 3px solid transparent;
+	background: transparent;
+	cursor: pointer;
+	font-family: 'Swis721 BT', sans-serif;
+}
+
+.results-tab.active {
+	border-bottom-color: #333;
+	font-weight: bold;
+}
+
+.results-tab-content {
+	width: 100%;
+}

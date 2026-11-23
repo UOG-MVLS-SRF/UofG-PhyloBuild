@@ -1,0 +1,4 @@
+30 September 2026 - V0.3 (Security Update)
+Added thorough checking of user-uploaded files
+Added tags for each type of upload, directing the types of file allowed
+Changed gunicorn settings to be safer

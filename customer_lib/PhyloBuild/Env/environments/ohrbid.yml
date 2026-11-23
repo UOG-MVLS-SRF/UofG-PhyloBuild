@@ -1,0 +1,24 @@
+name: ohrbid
+channels:
+  - r
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - mlst
+  - minimap2>=2.17,<2.29
+  - biopython
+  - ezclermont
+  - ncbi-amrfinderplus
+  - ectyper
+  - ncbi-stxtyper
+  - mash
+  - kleborate
+  - snippy=4.6.0
+  - snp-dists
+  - numpy
+  - pandas
+  - samtools=1.20
+  - bcftools=1.20
+  - python=3.10
+  - zlib<1.3

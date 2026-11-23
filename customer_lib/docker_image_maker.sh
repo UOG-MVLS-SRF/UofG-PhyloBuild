@@ -1,0 +1,97 @@
+FROM ubuntu:22.04
+
+ENV TZ=UTC
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+WORKDIR ./app
+
+RUN apt-get update && apt-get install -y \
+    wget \
+    git \
+    build-essential \
+    maven \
+    pandoc \
+    python3 \
+    openjdk-11-jdk \
+    python3-pip \
+    gfortran \
+    libreadline6-dev \
+    libx11-dev \
+    libxt-dev \
+    libpng-dev \
+    libjpeg-dev \
+    libcairo2-dev \
+    xvfb \
+    libbz2-dev \
+    libzstd-dev \
+    liblzma-dev \
+    libcurl4-openssl-dev \
+    texinfo \
+    screen \
+    libpcre2-dev \
+    tzdata \
+    zip \
+    unzip \
+    file \
+    libxml2-dev \
+    libssl-dev \
+    libuv1-dev \
+    nano
+
+RUN wget https://cran.r-project.org/src/base/R-4/R-4.3.1.tar.gz && \
+    tar -xf R-4.3.1.tar.gz && \
+    cd R-4.3.1 && \
+    ./configure --with-recommended-packages=yes && \
+    make && \
+    make install && \
+    rm -rf R-4.3.1.tar.gz R-4.3.1
+
+RUN wget -4 https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.12.0/ncbi-blast-2.12.0+-x64-linux.tar.gz && \
+    tar -xzf ncbi-blast-2.12.0+-x64-linux.tar.gz && \
+    mv ncbi-blast-2.12.0+/bin/* /usr/local/bin/ && \
+    rm -rf ncbi-blast-2.12.0+-x64-linux.tar.gz ncbi-blast-2.12.0+
+
+RUN R -e "install.packages(c('BiocManager', 'remotes', 'devEMF', 'data.table', 'readr', 'dplyr', 'tidyr', 'stringr', 'knitr', 'png', 'svglite'), repos='https://cloud.r-project.org/')"
+
+RUN R -e "options(timeout=300); remotes::install_github('YuLab-SMU/treeio')"
+
+RUN R -e "remotes::install_github('YuLab-SMU/ggtree')"
+
+RUN R -e "remotes::install_github('YuLab-SMU/ggtreeExtra')"
+
+RUN R -e "remotes::install_github('YuLab-SMU/treedataverse')"
+
+RUN pip install biopython
+
+RUN git clone https://github.com/sing-group/ALTER.git && \
+    cd ALTER && \
+    mvn clean install
+
+RUN git clone https://github.com/A-BN/ClermonTyping.git
+
+RUN chmod +x /app/ClermonTyping/*
+
+RUN apt-get update && \
+    apt-get install -y autoconf automake libtool git
+
+RUN git clone https://github.com/stephaneguindon/phyml.git && \
+    cd phyml && \
+    chmod 777 ./autogen.sh && \
+    ./autogen.sh && \
+    ./configure && \
+    make && \
+    make install
+
+RUN wget https://mafft.cbrc.jp/alignment/software/mafft-7.475-with-extensions-src.tgz && \
+    tar -xzf mafft-7.475-with-extensions-src.tgz && \
+    cd mafft-7.475-with-extensions/core && \
+    make clean && \
+    make && \
+    make install && \
+    rm -rf mafft-7.475-with-extensions-src.tgz mafft-7.475-with-extensions
+
+RUN git clone https://github.com/scapella/trimal.git && \
+    cd trimal/source && \
+    make
+
+RUN mv /app/trimal/source/trimal /usr/local/bin/

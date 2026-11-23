@@ -1,0 +1,7 @@
+01 September 2026 - V0.1 (Usability Update)
+Overhauled the homepage massively, improving readability
+Moved Orthologue Discovery feature to its own tab
+Added Preloaded Genomes and browser
+Help text added throughout the tool
+Added the Updates page
+Added a news ticker to the home page for important information
